@@ -1,0 +1,7 @@
+
+*.log
+*.prefs
+*.git
+.buildpath
+.project
+.settings

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$lang['cp_home']}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/artDialog/jquery.artDialog.js?skin=aero"></script>
+<!--[if lt IE 8]>
+<script src="__PUBLIC__/bootstrap/js/ie8-responsive-file-warning.js"></script>
+<![endif]-->
+
+<style type="text/css">
+    html{height: 100%}
+body{
+font-size:13px;
+font-family:Microsoft YaHei;
+font-weight:bold;
+width:1920px;height:auto;
+    background: -webkit-gradient(linear, left top, left bottom, from(#57c6d9), to(#d3eef3));
+    background: -moz-linear-gradient(top,  #57c6d9,  #d3eef3);
+	background: linear-gradient(to top, #d3eef3,#57c6d9);
+	background: -o-linear-gradient(top, #d3eef3,#d3eef3);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3eef3', endColorstr='#57c6d9',GradientType=0 );
+}
+:root .gradient{filter:none;}
+
+a{
+    text-decoration:none;
+    color:#000000;
+}
+
+*{
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.login_con{width:688px;height:819px;margin:-211px 732px auto -451px;background:url(__ASSETS__/images/mobile_bg.png) no-repeat scroll 0 0;overflow:auto;position:absolute;top:70%;left:50%;}
+.login_con .con_info{width:330px;height:130px;margin-left:288px;margin-top:292px;text-align:center}
+
+.login_con .con_info .login_input{
+    background-color:#faece3;
+    border: medium none;
+    height:35px;
+    line-height:35px;
+    padding: 0 3px;
+    width: 280px;
+	opacity:0.6;
+	color:#0b0b0b;
+	font-weight:bold
+}
+
+
+.login_con .con_info .dashed_inp{border-bottom:1px #000000 dashed;margin:6px auto;width:286px;}
+.login_con .con_info .ver_line{height:35px; width:64px; border-left:1px #d39b80 solid;position:relative;left:242px;top:-35px}
+.login_con .con_info .ver_line img{margin-top:5px;}
+.login_oper{width:330px;height:auto;margin-left:288px;margin-top:20px;text-align:center;}
+.login_oper .loginsignin{ 
+    background-color:#4ea5b8;
+    border: medium none;
+    color: #fff;
+    cursor: pointer;
+    height: 35px;
+    line-height: 35px;
+    padding: 0;
+    width: 280px;
+	font-size:20px
+}
+.login_oper .cheak{border: medium none;}
+.login_oper .p_rem{margin-bottom:16px}
+.login_oper .p_log{margin-bottom:35px;}
+.login_oper .p_for{margin-bottom:10px}
+.login_oper .dashed_ope{border-bottom:1px #000000 dashed;width:286px;margin:0 auto}	
+.login_footer{width:330px;height:auto;margin-left:288px;margin-top:40px;text-align:center;font-size:13px}	
+.login_footer a{margin-top:-5px;display:inline-block}
+
+</style>
+
+</head>
+
+<body>
+
+<form method="post" action="{url('login')}" name='theForm'>
+<div class="login_con" id="login_div">
+    <div class="con_info">
+        <input class="login_input" type="text" name="username" value="[大名]顶顶的～" >
+        <div class="dashed_inp" ></div>
+        
+        <input class="login_input" name="password" type="password" value="password">
+        <div class="dashed_inp" ></div>
+
+        <input class="login_input" type="text" name="captcha" maxlength="4" value="[验证码]要填,还有对～" >
+        <div class="ver_line" >
+            <img src="{url('verify')}" onclick="this.src='{url('verify')}?v='+Math.random();" width="50" height="24" title="{$lang['click_for_another']}" style="cursor: pointer;" />
+        </div>
+    </div>
+
+    <div class="login_oper">
+        <p class="p_rem">
+        <input id="remember" type="checkbox" name="remember" value="1" class="cheak">
+        <label for="remember">{$lang['remember']}</label>
+        </p>
+        <p class="p_log"><input class="loginsignin" type="submit" value="登录管理中心"></p>
+        <p class="p_for"><a href="{url('forget')}">埋嘎&nbsp;!&nbsp;忘记了密码了!</a></p>
+        <div class="dashed_ope" ></div>
+    </div>
+    <div class="login_footer">深圳市光辉岁月科技有限公司<a href=""> [ 点击关注 ]</a></div>
+    <input type="hidden" name="act" value="signin" />
+</div>
+</form>
+
+<script type="text/javascript">
+Env={};
+$(function(){
+	$('form[name="theForm"]').submit(function(){
+		var username = $('input[name="username"]').val();
+		var password = $('input[name="password"]').val();
+		var captcha = $('input[name="captcha"]').val();
+		var remember = $('input[name="remember"]').is(':checked') ? 1:0;
+		$.post("{url('login')}", {username:username, password:password, captcha:captcha, remember:remember}, function(result){
+			if(result.err > 0){
+				art.dialog({
+					id: 'tipBox',
+					time: 1,
+					icon: 'warning',
+					content: result.msg,
+					lock: true
+				});
+			}else{
+				window.location.href = "__ROOT__/index.php?m=admin";
+			}
+		}, 'json');
+		return false;
+	})
+})
+
+onload = function()
+{
+    $("#login_div").animate({ 
+        top: '35%',
+      }, 1000 );
+
+    $(".login_input").focus( function () {
+        if(! Env[this.name]){
+            Env[this.name] = this.value;
+            this.value = '';
+        }
+        else if(Env[this.name] == this.value){
+            this.value = '';
+        }
+     });
+     $(".login_input").blur( function () {
+         if(!this.value && Env[this.name]){
+            this.value = Env[this.name];
+         }
+     });
+}
+
+
+</script>
+</body>
+</html>

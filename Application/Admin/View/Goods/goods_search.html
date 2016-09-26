@@ -1,0 +1,51 @@
+<div class="row" style="margin:0">
+	<div style="float:left; width:800px; margin-top:5px;">
+	  <form action="javascript:searchGoods()" name="searchForm">
+		<img src="__PUBLIC__/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
+		<!-- 分类 -->
+		<select name="cat_id"><option value="0">{$lang['goods_cat']}</option>{$cat_list}</select>
+		<!-- 品牌 -->
+		<select name="brand_id"><option value="0">{$lang['goods_brand']}</option>{$brand_list_option}</select>
+		<!-- 推荐 -->
+		<select name="intro_type"><option value="0">{$lang['intro_type']}</option>{$intro_list_option}</select>
+		 <if condition="$suppliers_exists eq 1"> 
+		  <!-- 供货商 -->
+		  <select name="suppliers_id"><option value="0">{$lang['intro_type']}</option>{$suppliers_list_option}</select>
+		  </if>
+		  <!-- 上架 -->
+		  <select name="is_on_sale"><option value=''>{$lang['intro_type']}</option><option value="1">{$lang['on_sale']}</option><option value="0">{$lang['not_on_sale']}</option></select>
+		<!-- 关键字 -->
+		{$lang['keyword']} <input type="text" name="keyword" size="15" />
+		<input type="submit" value="{$lang['button_search']}" class="btn btn-default ectouch-mb5" />
+	  </form>
+	</div>
+	<if condition="$action_link1 gt 0">
+	<div class="pull-right ectouch-mb5"><a href="{$action_link1['href']}" class="btn btn-primary">{$action_link1['text']}</a></div>
+	</if>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/js/utils.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/transport.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/listtable.js"></script>
+<script language="JavaScript">
+	listTable.recordCount = {$record_count};
+	listTable.pageCount = {if $page}{$page['page_count']}{else}0{/if};
+
+	{loop $filter $key $item}
+	listTable.filter.{$key} = '{$item}';
+	{/loop}
+    function searchGoods()
+    {
+        listTable.filter['cat_id'] = document.forms['searchForm'].elements['cat_id'].value;
+        listTable.filter['brand_id'] = document.forms['searchForm'].elements['brand_id'].value;
+        listTable.filter['intro_type'] = document.forms['searchForm'].elements['intro_type'].value;
+          {if $suppliers_exists == 1}
+          listTable.filter['suppliers_id'] = document.forms['searchForm'].elements['suppliers_id'].value;
+          {/if}
+        listTable.filter['is_on_sale'] = document.forms['searchForm'].elements['is_on_sale'].value;
+        listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+        listTable.filter['page'] = 1;
+
+        listTable.loadList();
+    }
+</script>

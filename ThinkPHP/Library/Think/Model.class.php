@@ -1907,4 +1907,17 @@ class Model {
         return $this;
     }
 
+    /**
+     * 返回一个字段
+     * @return boolean
+     */
+    public function getOne() {
+        $this->options['limit'] = 1; //限制只查询一条数据
+        $field = strtolower($this->options['field']) ;
+        $data = $this->find();
+        // \Think\Log::record('====getOne=======>'. json_encode($data));
+
+        return isset($data[$field]) ? $data[$field] : false;
+    }
+
 }

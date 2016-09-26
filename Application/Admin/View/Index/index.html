@@ -1,87 +1,205 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>『童老师ThinkPHP』后台管理</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_PUC;?>/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo ADMIN_PUC;?>/css/main.css"/>
-    <script type="text/javascript" src="<?php echo ADMIN_PUC;?>/js/libs/modernizr.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$lang['cp_home']}</title>
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<link rel="stylesheet" href="<?php echo ADMIN_PUC;?>/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo ADMIN_PUC;?>/css/font-awesome.min.css">
+<link href="<?php echo ADMIN_PUC;?>/css/admin.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-<include file="Common/top" /> 
-<div class="container clearfix">
-    <div class="sidebar-wrap">
-        <div class="sidebar-title">
-            <h1>菜单</h1>
-        </div>
-        <include file="Common/left" />
-    <!--/sidebar-->
-    <div class="main-wrap">
-        <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span>欢迎收看童老师ThinkPHP视频教程第三季度<span><a target="_blank" style="color:#f00; margin:0 20px;" href="http://www.chuanke.com/s2260700.html">点此查看视频教程</a></span></span></div>
-        </div>
-        <div class="result-wrap">
-            <div class="result-title">
-                <h1>快捷操作</h1>
-            </div>
-            <div class="result-content">
-                <div class="short-wrap">
-                    <a href="#"><i class="icon-font">&#xe001;</i>新增作品</a>
-                    <a href="#"><i class="icon-font">&#xe005;</i>新增博文</a>
-                    <a href="#"><i class="icon-font">&#xe048;</i>新增作品分类</a>
-                    <a href="#"><i class="icon-font">&#xe041;</i>新增博客分类</a>
-                    <a href="#"><i class="icon-font">&#xe01e;</i>作品评论</a>
+<body onload="setValue()" onresize="setValue()">
+    <header>
+        <div class="magLogHeader">
+            <div class="headerLeft">
+                 <img src="<?php echo ADMIN_PUC;?>/images/LOGO-magLog.png"/>
+                  <div  style="height:28px;float:left; margin-top:35px ;">微分销系统管理后台 </div>
+            </div> 
+            <div class="headerRight">
+                <div class="top">你好！&nbsp;{$user_name} </div>
+                <div class="bottom">
+                    <span class="s1"><a href="javascript:window.top.frames['mainFrame'].document.location.reload();">{$lang['refresh']}</a></span> 
+                    <span class="s1"><a href="{url('modify')}" target="mainFrame">{$lang['profile']}</a></span> 
+                    <span class="s1"><a href="{url('clearCache')}" target="mainFrame">{$lang['clear_cache']}</a></span> 
+                    <span class="s2"><a href="{url('logout')}">{$lang['signout']}</a></span>
                 </div>
             </div>
+        </div>  
+    </header>
+    <!--<div class="magLogMid">-->
+         <div class="magLogCon"> 
+            <div class="magLogMid" style="width:90%;min-width:1000px;margin:0 auto; ">
+            <div class="magLogConLt">
+                <ul class = "ConLtList">
+                    <li class = "showList"><i class="fa fa-tags"></i> 微店</li>
+                    <li class = "hideList">
+                        <ul>                        
+                            <li><a href="__SELF__/goods/index" target="mainFrame">商品列表</a></li>
+                            <li><a href="{url('category/index')}" target="mainFrame">商品分类</a></li>
+                            <li><a href="{url('goods/trash')}" target="mainFrame">商品回收站</a></li>
+                            <li><a href="{url('goodstype/index')}" target="mainFrame">商品类型</a></li>
+                            <li><a href="{url('store/index')}" target="mainFrame">门店管理</a></li>
+                            <li><a class="no_border" href="{url('brand/index')}" target="mainFrame">品牌管理</a></li>
+                        </ul>
+                    </li>
+                    <li class = "showList"><i class="fa fa-credit-card"></i> 订单</li>
+                    <li class = "hideList">
+                        <ul>
+                            <li><a href="{url('order/index')}" target="mainFrame">订单列表</a></li>
+                            <li><a href="{url('delivery/index')}" target="mainFrame">发货单列表</a></li>
+                            <li><a href="{url('delivery/back')}" target="mainFrame">退货单列表</a></li>
+                            <li><a href="{url('payment/index')}" target="mainFrame">支付方式</a></li>
+                            <li><a href="{url('shipping/index')}" target="mainFrame">配送方式</a></li>
+                            <li><a href="{url('rebate/edit')}" target="mainFrame">比例配置</a></li>
+                            <li><a class="no_border" href="{url('rebate/index')}" target="mainFrame">分成审核</a></li>
+                        </ul>
+                    </li>
+                    <li class = "showList"><i class="fa fa-gift"></i> 微活动</li>
+                    <li class = "hideList">
+                        <ul>
+                            <li><a href="{url('exchange/index')}" target="mainFrame">积分商城</a></li>
+                            <li><a href="{url('redpacket/index')}" target="mainFrame">微信红包</a></li>
+                            <li><a href="{url('bonus/index')}" target="mainFrame">商城红包</a></li>
+                            <li><a href="{url('favourable/index')}" target="mainFrame">优惠活动</a></li>
+                            <li><a href="{url('groupbuy/index')}" target="mainFrame">团购活动</a></li>
+                            <li><a href="{url('saleplan/index')}" target="mainFrame">团购方案</a></li>
+                            <li><a href="{url('auction/index')}" target="mainFrame">拍卖活动</a></li>
+                            <li><a href="{url('topic/index')}" target="mainFrame">专题管理</a></li>
+                            <li><a href="{url('advert/index')}" target="mainFrame">广告管理</a></li>
+                            <li><a class="no_border" href="{url('purchasing/index')}" target="mainFrame">代购管理</a></li>
+                        </ul>
+                    </li>
+                    <li class = "showList"><i class="fa fa-user"></i> CRM</li>
+                    <li class = "hideList">
+                        <ul>
+                            <li><a href="{url('user/index')}" target="mainFrame">会员列表</a></li>
+                            <li><a href="{url('userrank/index')}" target="mainFrame">会员等级</a></li>
+                            <li><a href="{url('user/recommend_list')}" target="mainFrame">客户推广</a></li>
+                            <li><a class="no_border" href="{url('useraccount/index')}" target="mainFrame">充值和提现</a></li>
+                        </ul>
+                    </li>
+                    <li class = "showList"><i class="fa fa-magnet"></i> 增值管理</li>
+                    <li class = "hideList">
+                        <ul>
+                            <li><a href="{url('authorization/index')}" target="mainFrame">快捷登录</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class = "showList"><i class="fa fa-magnet"></i> 统计报表</li>
+                    <li class = "hideList">
+                        <ul>
+                            <li><a href="{url('sale/index')}" target="mainFrame">销售明细</a></li>
+                            <li><a href="{url('saleorder/index')}" target="mainFrame">销售排行</a></li>
+                            <li><a href="{url('usersorder/index')}" target="mainFrame">会员排行</a></li>
+                            <li><a href="{url('guest/index')}" target="mainFrame">客户统计</a></li>
+                            <li><a href="{url('flowstats/index')}" target="mainFrame">流量分析</a></li>
+                            <li><a href="{url('orderstats/index')}" target="mainFrame">订单统计</a></li>
+                            <li><a href="{url('salegeneral/index')}" target="mainFrame">销售概况</a></li>
+                            <li><a href="{url('searchengine/index')}" target="mainFrame">搜索引擎</a></li>
+                            <li><a href="{url('visitsold/index')}" target="mainFrame">访问购买率</a></li>
+                            <li><a href="{url('adsense/index')}" target="mainFrame">站外投放JS</a></li>
+                        </ul>
+                    </li>
+                    <li class = "showList"><i class="fa fa-cog"></i> 系统管理</li>
+                    <li class = "hideList">
+                        <ul>
+                            <li><a href="{url('config/index')}" target="mainFrame">商店设置</a></li>
+                            <li><a href="{url('wechat/index')}" target="mainFrame">微信配置</a></li>
+                            <li><a href="{url('menu/index')}" target="mainFrame">自定义菜单</a></li>
+                            <li><a href="{url('reply/index')}" target="mainFrame">自定义回复</a></li>
+                            <li><a href="{url('album/index')}" target="mainFrame">图片资源</a></li>
+                              <li><a href="{url('teletext/index')}" target="mainFrame">图文资源</a></li>
+                              <li><a href="{url('articlecat/index')}" target="mainFrame">文章分类</a></li>
+                            <li><a class="no_border" href="{url('article/index')}" target="mainFrame">文章管理</a></li>
+                        </ul>
+                    </li>
+                    <li class = "showList"><i class="fa fa-cog"></i> 模块管理</li>
+                    <li class = "hideList">
+                        <ul>
+                            <li><a class="no_border" href="{url('module/index')}" target="mainFrame">模块设置</a></li>
+                        </ul>
+                    </li>
+                   </ul>
+                <div class="shadow" ></div> 
+            </div>
+            <div class="magLogConRt">
+                <iframe name="mainFrame" id="mainFrame" src="__SELF__/index/welcome" style="height:100%;visibility:inherit;width:100%;z-index:1;overflow:visible;width:100%;border:none;background:#fff;" scrolling="yes" frameborder="no"> 
+                </iframe>
+                <div class="shadow" style="margin-top:-5px;"></div>
+                <footer class="copyright">
+                    <div class="ct">
+                        <a href="http://www.ghsy8.com" title="爱微购" target="_blank" class="logo"><img src="<?php echo ADMIN_PUC;?>/images/topLogo.jpg" width="100%;" ></a>
+                        <p class="pfonts">&copy; 深圳市光辉岁月有限公司&nbsp;&nbsp;|&nbsp;&nbsp;awego&nbsp;&nbsp;V1.0</p>
+                    </div>
+                </footer>
+            </div>                  
         </div>
-        <div class="result-wrap">
-            <div class="result-title">
-                <h1>系统基本信息</h1>
-            </div>
-            <div class="result-content">
-                <ul class="sys-info-list">
-                    <li>
-                        <label class="res-lab">操作系统</label><span class="res-info">WINNT</span>
-                    </li>
-                    <li>
-                        <label class="res-lab">运行环境</label><span class="res-info">Apache/2.2.21 (Win64) PHP/5.3.10</span>
-                    </li>
-                    <li>
-                        <label class="res-lab">PHP运行方式</label><span class="res-info">apache2handler</span>
-                    </li>
-                    <li>
-                        <label class="res-lab">静静设计-版本</label><span class="res-info">v-0.1</span>
-                    </li>
-                    <li>
-                        <label class="res-lab">上传附件限制</label><span class="res-info">2M</span>
-                    </li>
-                    <li>
-                        <label class="res-lab">北京时间</label><span class="res-info">2014年3月18日 21:08:24</span>
-                    </li>
-                    <li>
-                        <label class="res-lab">服务器域名/IP</label><span class="res-info">localhost [ 127.0.0.1 ]</span>
-                    </li>
-                    <li>
-                        <label class="res-lab">Host</label><span class="res-info">127.0.0.1</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="result-wrap">
-            <div class="result-title">
-                <h1>使用帮助</h1>
-            </div>
-            <div class="result-content">
-                <ul class="sys-info-list">
-                    <li>
-                        <label class="res-lab">ThinkPHP交流群：</label><span class="res-info">484519446</span>
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>
+        </div>         
+                     
     </div>
-    <!--/main-->
-</div>
+
+
+<script src="<?php echo ADMIN_PUC;?>/js/jquery.min.js" type="text/javascript"></script> 
+<script src="<?php echo ADMIN_PUC;?>/js/bootstrap.min.js"></script> 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".showList").click(function(){
+            $(".hideList").hide();
+            $(this).next().slideDown("slow");
+        });
+        $(".hideList a").mouseover(function() {
+                $(this).css("background-color", "#e4e4e4");
+            });
+        $(".hideList a").mouseout(function() {
+                $(this).css("background-color", "#f7f7f7");
+                $(".hideList a").each(function() {
+                    if ($(this).attr("clk") == 'true') {
+                        $(this).css("background-color", "#a09b9b");
+                    }
+                });
+            });
+            $(".hideList a").click(function() {
+                $(".hideList a").attr("clk", "");
+                $(this).attr("clk", "true");
+                $(".hideList a").css("background-color", "#f7f7f7");
+                $(this).css("background-color", "#a09b9b");
+            });
+    });
+     function setValue(){
+            var top=93;
+            var bottom=74;
+            var Lwidth = $(".magLogConLt").width();
+            var Rwidth = $(".magLogMid").width()-Lwidth-16;
+             
+            var Conheight = $(window).height()-top-25;
+            var iframe_hei = $(window).height()-top-bottom-30;
+            
+            $(".magLogConRt").width(Rwidth);
+            $(".magLogConRt").height(Conheight);
+            
+            $(".ConLtList").height(iframe_hei-40);
+            
+            $("#mainFrame").height(iframe_hei);
+         }
+function toggleMenu(){
+  imgArrow = $('#img');
+  admin_menubar_width = 180;
+  admin_menubar = $('#admin_menubar');
+
+  if (admin_menubar.width() == admin_menubar_width){
+    admin_menubar.width(0);
+    $("#admin_switchbar").css('left', 0);
+    $("#admin_contont").css('left', 10);
+    imgArrow.attr('src', "<?php echo ADMIN_PUC;?>/images/arrow_right.gif");
+  } else {
+    admin_menubar.width(admin_menubar_width);
+    $("#admin_switchbar").css('left', admin_menubar_width);
+    $("#admin_contont").css('left', admin_menubar_width + 10);
+    imgArrow.attr('src', "<?php echo ADMIN_PUC;?>/images/arrow_left.gif");
+  }
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,269 @@
+@charset "utf-8";
+
+*{margin:0; padding:0; outline:none; font-family:'微软雅黑'}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button,
+textarea, p, blockquote, th, td {margin: 0;padding: 0;}
+body{margin:0 auto;}
+img {border: 0;}
+h1, h2, h3, h4, h5, h6 {font-size:100%;font-weight: normal;}
+ol, ul, dl {list-style: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+th{text-align: left;}
+td,th,div{word-break:break-all;word-wrap:break-word;}
+a{text-decoration:none;color:#336699;}
+a:hover{ text-decoration:underline;}
+form{display:inline;}
+ .hr{overflow:hidden;height:0;border-top:1px solid #cacaca;border-bottom:1px solid #ffffff;}
+html {font-size:12px; border:0;}
+body{border:none;color:#555555; height:100%;   font-family:Verdana, Arial, Trebuchet MS;}
+
+/* 管理登录页面
+*/
+ 
+header{	
+	background:#fff;
+	height:93px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	border-bottom:1px solid #3CF;
+	overflow:hidden;
+    
+}
+.magLogHeader{
+	width:90%;
+	height:92px;
+	margin:0 auto;
+	min-width:1000px;
+	}
+header .headerLeft{
+	float:left;	
+	width:45%;
+	font-size:18px;
+}
+header .headerLeft img{
+	width:140px;
+	margin:10px;
+	float:left;
+}
+header .headerRight{
+	float:right;
+	width:50%;
+	text-align:right;
+	border-right:1px solid #3CF;
+	font-size:16px;
+ 
+}
+header .headerRight .top{
+	margin:20px 15px 5px;
+}
+header .headerRight .bottom{
+	margin:10px 15px 2px;
+}
+header .headerRight  .bottom .s1{
+	padding:0px 15px;
+	border-right:1px solid #555;	
+}
+header .headerRight .bottom .s2{
+	padding-left:15px; 
+}
+
+
+
+
+ 
+.magLogCon{
+	background:#e5e5e5;
+	width:100%;
+	position:absolute;
+	top:93px;
+	bottom:0px;
+	
+	
+}
+.magLogConLt{
+	width:14%;
+	float:left;
+	min-width:175px;
+	border-right:1px solid #3CF;
+	background:#e5e5e5;
+	position:absolute;
+	top:0px;
+	bottom:0px;;
+	  
+	
+}
+ 
+.magLogConLt .ConLtList{
+	font-size:14px;
+	margin-top:25px;
+	padding:20px;
+	background:#fff;
+	color:#696969;
+	overflow:auto; 
+	
+}
+.magLogConLt .ConLtList .fa{
+	font-size:20px;
+	color:#ddd;
+	margin-right:5px;
+}
+.ConLtList .showList{
+	height:60px;
+	line-height:60px;
+	border-bottom:1px solid #3cf;
+	cursor:pointer;
+	background:#fff;
+	font-weight: bold; 
+}
+
+.ConLtList .hideList{
+	border-bottom:1px solid #3cf;
+	display:none;
+	
+}
+ 
+.ConLtList .hideList a{ 
+	height:40px;
+	line-height:40px;
+	color:#666;
+	font-size:14px;
+	text-indent:10px;
+ 	display:block;
+	background:#f7f7f7;
+	text-decoration: none;
+	border-bottom:1px #666 dashed;
+}
+.ConLtList .hideList .no_border{ 
+	border-bottom:none;	
+}
+
+.magLogConRt{ 
+	float:right;
+	background:#e5e5e5;
+	top:0px;
+	bottom:0;
+	margin:25px 0px 0px 15px;
+	overflow:hidden;
+	height:100%;
+}
+.footer{
+	width:100%;
+	bottom:0px;
+	position:absolute;
+}
+.copyright .ct{
+	width:50%;
+	margin:5px auto;
+	text-align:center
+}
+.copyright .ct a{
+	display:block;
+	width:120px;
+	margin:0 auto	
+}
+.copyright .pfonts{
+	font-size:14px
+	}
+
+
+
+/*管理登录页面-右边框架内的显示*/
+.MagRtCon1{
+	height:150px;
+	}
+.MagRtMune{
+	  position:relative;
+	  float:left;
+	  width:25%;
+	  height:140px;
+  }
+  .MagRtMune .z1{
+		text-align:center;
+		margin-bottom:10px;
+		padding-top:30px;
+		color:#666;
+	}
+.MagRtMune .z2{
+	text-align:center;
+	color:#000;
+}
+	
+	
+	.MagRtMune4{	
+		right:-100%;
+		 
+	}
+	.MagRtMune4 .mune4{
+		background:#fafbfb;
+		display:block;
+		width:100%;
+		height:119px;
+	}
+	
+	.MagRtMune3{
+		right:-75%;
+	}
+	.MagRtMune3 .mune3{
+		background:#c2eeee;
+		display:block;
+		width:100%;
+		height:119px;
+	}
+	.MagRtMune2{
+		right:-50%;
+	 
+	}
+	.MagRtMune2 .mune2{
+		background:#9be4e4;
+		display:block;
+		width:100%;
+		height:119px;
+	}
+	
+	
+	.MagRtMune1{
+		right:-25%;
+	}
+	.MagRtMune1 .mune1{
+		background:#6bdbdb;
+		display:block;
+		width:100%;
+		height:119px;
+	}
+	
+.shadow{
+	width:100%;
+	height:21px;
+	background:url(../images/shadow.png) repeat-x;
+}
+
+
+.RtCon2_top{
+	width:100%;
+	height:75px;
+	background:#f7f7f7;
+	border-bottom:1px solid #afd3d1;
+	}
+
+.RtCon2_bottom{
+	width:100%;
+	height:55px;
+	background:#fff;
+	bottom:0px;
+	position:fixed;
+	}
+	
+.RtCon2_mid_msg{
+	height:47px;
+	line-height:46px;
+	border-bottom:1px solid #c1c1c1;
+}
+.RtCon2_mid_msg a{
+	display:block;
+	width:100%;
+	height:46px;
+	background:#fff;
+	font-size:17px;
+}
