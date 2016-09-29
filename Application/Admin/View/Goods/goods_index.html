@@ -17,7 +17,7 @@
     <th class="text-center"><a href="javascript:listTable.sort('is_new'); ">{:L('is_new')}</a></th>
     <th class="text-center"><a href="javascript:listTable.sort('is_hot'); ">{:L('is_hot')}</a></th>
     <th class="text-center"><a href="javascript:listTable.sort('sort_order'); ">{:L('sort_order')}</a>{$sort_sort_order}</th>
-    <if condition = "$use_storage eq 1">
+    <if condition = "$use_storage">
     <th class="text-center"><a href="javascript:listTable.sort('goods_number'); ">{:L('goods_number')}</a>{$sort_goods_number}</th>
     </if>
     <th>{:L('handler')}</th>
@@ -31,10 +31,10 @@
     <td class="text-right"><span onclick="listTable.edit(this, 'edit_goods_price', {$goods['goods_id']})">{$goods['shop_price']}
 
     </span></td>
-    <td class="text-center"><img src="__PUBLIC__/images/{if $goods['is_on_sale']}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_on_sale', {$goods['goods_id']})" /></td>
-    <td class="text-center"><img src="__PUBLIC__/images/{if $goods['is_best']}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_best', {$goods['goods_id']})" /></td>
-    <td class="text-center"><img src="__PUBLIC__/images/{if $goods['is_new']}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_new', {$goods['goods_id']})" /></td>
-    <td class="text-center"><img src="__PUBLIC__/images/{if $goods['is_hot']}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_hot', {$goods['goods_id']})" /></td>
+    <td class="text-center"><img src="__PUBLIC__/images/<if condition="$goods['is_on_sale']">yes<else/>no</if>.gif" onclick="listTable.toggle(this, 'toggle_on_sale', {$goods['goods_id']})" /></td>
+    <td class="text-center"><img src="__PUBLIC__/images/<if condition="$goods['is_best']">yes<else/>no</if>.gif" onclick="listTable.toggle(this, 'toggle_best', {$goods['goods_id']})" /></td>
+    <td class="text-center"><img src="__PUBLIC__/images/<if condition="$goods['is_new']">yes<else/>no</if>.gif" onclick="listTable.toggle(this, 'toggle_new', {$goods['goods_id']})" /></td>
+    <td class="text-center"><img src="__PUBLIC__/images/<if condition="$goods['is_hot']">yes<else/>no</if>.gif" onclick="listTable.toggle(this, 'toggle_hot', {$goods['goods_id']})" /></td>
     <td class="text-center"><span onclick="listTable.edit(this, 'edit_sort_order', {$goods['goods_id']})">{$goods['sort_order']}</span></td>
     <if condition="$use_storage gt 0">
     <td align="right"><span onclick="listTable.edit(this, 'edit_goods_number', {$goods['goods_id']})">{$goods['goods_number']}</span></td>
@@ -44,7 +44,7 @@
       <a href="{U('edit',array('goods_id'=>$goods['goods_id'], 'extension_code'=>$code))}" title="{$lang['edit']}"><img src="__PUBLIC__/images/icon_edit.gif" width="16" height="16" border="0" /></a>
       <a href="{U('copy',array('goods_id'=>$goods['goods_id'], 'extension_code'=>$code))}" title="{$lang['copy']}"><img src="__PUBLIC__/images/icon_copy.gif" width="16" height="16" border="0" /></a>
       <a href="javascript:;" onclick="listTable.remove({$goods['goods_id']}, '{$lang['trash_goods_confirm']}')" title="{$lang['trash']}"><img src="__PUBLIC__/images/icon_trash.gif" width="16" height="16" border="0" /></a>
-      <if condition="$specifications[$goods['goods_type']] gt 0">
+      <if condition="$specifications[$goods['goods_type']]">
       	<a href="{U('product/index',array('goods_id'=>$goods['goods_id']))}" title="{$lang['item_list']}"><img src="__PUBLIC__/images/icon_docs.gif" width="16" height="16" border="0" /></a>
       <else>
       	<img src="__PUBLIC__/images/empty.gif" width="16" height="16" border="0" />

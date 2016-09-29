@@ -3,20 +3,20 @@
 	  <form action="javascript:searchGoods()" name="searchForm">
 		<img src="__PUBLIC__/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
 		<!-- 分类 -->
-		<select name="cat_id"><option value="0">{$lang['goods_cat']}</option>{$cat_list}</select>
+		<select name="cat_id"><option value="0">{:L('goods_cat')}</option>{$cat_list}</select>
 		<!-- 品牌 -->
-		<select name="brand_id"><option value="0">{$lang['goods_brand']}</option>{$brand_list_option}</select>
+		<select name="brand_id"><option value="0">{:L('goods_brand')}</option>{$brand_list_option}</select>
 		<!-- 推荐 -->
-		<select name="intro_type"><option value="0">{$lang['intro_type']}</option>{$intro_list_option}</select>
-		 <if condition="$suppliers_exists eq 1"> 
+		<select name="intro_type"><option value="0">{:L('intro_type')}</option>{$intro_list_option}</select>
+		 <if condition="$suppliers_exists"> 
 		  <!-- 供货商 -->
-		  <select name="suppliers_id"><option value="0">{$lang['intro_type']}</option>{$suppliers_list_option}</select>
+		  <select name="suppliers_id"><option value="0">{:L('intro_type')}</option>{$suppliers_list_option}</select>
 		  </if>
 		  <!-- 上架 -->
-		  <select name="is_on_sale"><option value=''>{$lang['intro_type']}</option><option value="1">{$lang['on_sale']}</option><option value="0">{$lang['not_on_sale']}</option></select>
+		  <select name="is_on_sale"><option value=''>{:L('intro_type')}</option><option value="1">{$lang['on_sale']}</option><option value="0">{:L('not_on_sale')}</option></select>
 		<!-- 关键字 -->
-		{$lang['keyword']} <input type="text" name="keyword" size="15" />
-		<input type="submit" value="{$lang['button_search']}" class="btn btn-default ectouch-mb5" />
+		{:L('keyword')} <input type="text" name="keyword" size="15" />
+		<input type="submit" value="{:L('button_search')}" class="btn btn-default ectouch-mb5" />
 	  </form>
 	</div>
 	<if condition="$action_link1 gt 0">

@@ -59,6 +59,7 @@ class GoodsController extends AdminController {
 	    $this->assign('intro_list',   get_intro_list());
 	    $this->assign('list_type',    'goods');
 	    $use_storage = C('use_storage');
+        \Think\Log::record('====use_storage=======>'. $use_storage);
 	    $this->assign('use_storage',  empty($use_storage) ? 0 : 1);
 	
 	    $suppliers_list = suppliers_list_info(' is_check = 1 ');
