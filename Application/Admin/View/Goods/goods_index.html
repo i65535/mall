@@ -148,9 +148,9 @@
       // 切换分类列表的显示
       frm.elements['target_cat'].style.display = frm.elements['type'].value == 'move_to' ? '' : 'none';
 			
-			{if $suppliers_list > 0}
+			<if condition="$suppliers_list gt 0">
       frm.elements['suppliers_id'].style.display = frm.elements['type'].value == 'suppliers_move_to' ? '' : 'none';
-			{/if}
+			</if>
 
       if (!document.getElementById('btnSubmit').disabled &&
           confirmSubmit(frm, false))

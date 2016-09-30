@@ -29,19 +29,19 @@
 <script type="text/javascript" src="__PUBLIC__/js/listtable.js"></script>
 <script language="JavaScript">
 	listTable.recordCount = {$record_count};
-	listTable.pageCount = {if $page}{$page['page_count']}{else}0{/if};
+	listTable.pageCount = <if condition="$page">{$page['page_count']}<else/>0</if>;
 
-	{loop $filter $key $item}
-	listTable.filter.{$key} = '{$item}';
-	{/loop}
+	// foreach($filter as $key =>$item)
+	// listTable.filter.{$key} = '{$item}';
+	// {/loop}
     function searchGoods()
     {
         listTable.filter['cat_id'] = document.forms['searchForm'].elements['cat_id'].value;
         listTable.filter['brand_id'] = document.forms['searchForm'].elements['brand_id'].value;
         listTable.filter['intro_type'] = document.forms['searchForm'].elements['intro_type'].value;
-          {if $suppliers_exists == 1}
+          <if condition="$suppliers_exists eq 1">
           listTable.filter['suppliers_id'] = document.forms['searchForm'].elements['suppliers_id'].value;
-          {/if}
+          </if>
         listTable.filter['is_on_sale'] = document.forms['searchForm'].elements['is_on_sale'].value;
         listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
         listTable.filter['page'] = 1;
